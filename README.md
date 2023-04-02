@@ -6,3 +6,9 @@ IT GIVES THE TRAILERS OF THE MOVIES THAT YOU WANT.
 BOT-NAME : PROFILE
 
 LINK : t.me/profile_666_bot
+
+PACKAGE USED :- python-telegram-bot (VERSION : 13.7)
+
+DATABASE USED : MONGODB ATLAS
+
+GMAIL : telemongo666@gmail.com
