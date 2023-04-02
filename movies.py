@@ -10,14 +10,13 @@ client = pymongo.MongoClient("mongodb+srv://telemongo666:2jdkNeP5bpQmFseP@mydb.w
 db = client.Profile
 collection = db.images
 
-#Token = "6169546617:AAE-4qKGjnYXNejerwAy8avAtfNGWTgiV-0"
-updater = telegram.ext.Updater("6169546617:AAE-4qKGjnYXNejerwAy8avAtfNGWTgiV-0",use_context=True)
+updater = telegram.ext.Updater("<API_TOKEN_HERE>",use_context=True)
 dispatcher = updater.dispatcher
 
 
 
 def start(update,context):
-    update.message.reply_text("Hello! welcome ")
+    update.message.reply_text("Hello! welcome to Movies BOT")
 
 
 def help(update,context):
@@ -30,17 +29,11 @@ def help(update,context):
 
         """
         )
-
-
-
-
-
-
-def Avatar(update,context):
+def Movie(update,context):
     chatid = update.effective_chat.id
-    bot = telegram.Bot("6169546617:AAE-4qKGjnYXNejerwAy8avAtfNGWTgiV-0")
+    bot = telegram.Bot("<API_TOKEN_HERE>")
     img = db["images"]
-    filter = { "Name": "Avatar" }
+    filter = { "Name": update.message.text[1:].title()}
 
     document = img.find_one(filter)
     formated = ""
@@ -53,7 +46,7 @@ def Avatar(update,context):
     
 dispatcher.add_handler(telegram.ext.CommandHandler("start",start))
 dispatcher.add_handler(telegram.ext.CommandHandler("help",help))
-dispatcher.add_handler(telegram.ext.CommandHandler("Avatar",Avatar))
+dispatcher.add_handler(MessageHandler(Filters.command, Movie))
 
 updater.start_polling()
 updater.idle()
