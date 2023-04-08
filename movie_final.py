@@ -9,7 +9,7 @@ from telegram.ext import MessageHandler
 from bson import json_util
 
 
-updater = telegram.ext.Updater("6169546617:AAE-4qKGjnYXNejerwAy8avAtfNGWTgiV-0",use_context=True)
+updater = telegram.ext.Updater("<TELEGRAM_API_KEY_HERE>",use_context=True)
 dispatcher = updater.dispatcher
 
 
@@ -50,7 +50,7 @@ def CleanData(data):
 
 def search_movie(title):
     try:
-        url = f"http://www.omdbapi.com/?i=tt3896198&apikey=a52d3312&t={title}"
+        url = f"http://www.omdbapi.com/?i=tt3896198&apikey=<API_KEY_HERE>&t={title}"
         response = requests.get(url)
         movie_data = response.json()
         formatted_data = CleanData(movie_data)
@@ -60,9 +60,9 @@ def search_movie(title):
         return "PLEASE ENTER A VALID MOVIE TITLTE\U0001F643"
 
 
-def Avatar(update,context):
+def Movie(update,context):
     chatid = update.effective_chat.id
-    bot = telegram.Bot("6169546617:AAE-4qKGjnYXNejerwAy8avAtfNGWTgiV-0")
+    bot = telegram.Bot("<TELEGRAM_API_KEY_HERE>")
 
     msg = update.message.text
     msg = msg[1:]
@@ -76,8 +76,8 @@ def Avatar(update,context):
 
 dispatcher.add_handler(telegram.ext.CommandHandler("start",start))
 dispatcher.add_handler(telegram.ext.CommandHandler("help",help))
-#dispatcher.add_handler(telegram.ext.CommandHandler(,Avatar))
-dispatcher.add_handler(MessageHandler(Filters.command, Avatar))
+
+dispatcher.add_handler(MessageHandler(Filters.command, Movie))
 
 updater.start_polling()
 updater.idle()
