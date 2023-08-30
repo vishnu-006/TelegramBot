@@ -71,6 +71,7 @@ def Movie(update,context):
 
 
     bot.send_message(chat_id=chatid, text=result)
+    bot.send_photo(chat_id=chatid, photo = "https://unsplash.com/s/photos/{}".format(msg))
    
     
 
